@@ -2,6 +2,7 @@ package com.example.lungaroprer.sosapp.repositorio.usuario;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.lungaroprer.sosapp.entidad.Usuario;
@@ -31,8 +32,28 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
         usuario.setId(id.intValue());
     }
 
+
+    @Override
+    public Usuario buscar(String email){
+
+        SQLiteDatabase db =  dbConnection.getReadableDatabase();
+        Cursor cursor = db.query("usuario", null, "email=?", new String[]{email}, null, null, null, null);
+        Usuario usuario = null;
+
+        if (cursor.moveToNext()){
+            usuario.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            usuario.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
+            usuario.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            usuario.setPassword(cursor.getString(cursor.getColumnIndex("passwrod")));
+        }
+        db.close();
+        return usuario;
+    }
+
+    /*
     @Override
     public Usuario buscar(String email) {
         return null;
     }
+    */
 }

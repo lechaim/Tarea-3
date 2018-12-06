@@ -23,9 +23,9 @@ public class Registro extends AppCompatActivity {
         usuarioRepositorio = new UsuarioRepositorioImpl(this);
 
         final EditText emailText = findViewById(R.id.edtEmailRegistro);
-        final EditText nombreText = findViewById(R.id.edtNombre);
+        final EditText nombreText = findViewById(R.id.edtNombreRegistro);
         final EditText passwordText = findViewById(R.id.edtContrasenaRegistro);
-        EditText password2Text = findViewById(R.id.edtConfirmarContrasena);
+        final EditText password2Text = findViewById(R.id.edtConfirmarContrasena);
 
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
 
